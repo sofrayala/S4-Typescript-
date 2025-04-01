@@ -58,3 +58,20 @@ body {
   border: rgb(71, 191, 231);
   border-radius: 0.5rem;
 }
+
+ul,
+li {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+ul button {
+  border: none;
+  background: none;
+  font-size: x-large;
+}
+
+ul button:hover {
+  transform: scale(1.5);
+}

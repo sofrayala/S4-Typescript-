@@ -8,23 +8,43 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-// //Ej 1
+// Get Dad Joke API
 let result = document.querySelector("#result");
 let button = document.querySelector("#btn");
+let scoreButtons = document.querySelectorAll("#scores button");
 let currentJoke = "";
+let reportJokes = [];
+let currentScore = null;
 const getDadJoke = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const response = yield fetch("https://icanhazdadjoke.com/", {
             headers: { Accept: "application/json" },
         });
         const data = yield response.json();
-        result.innerHTML = data.joke;
         currentJoke = data.joke;
-        return currentJoke;
+        result.innerHTML = currentJoke;
+        currentScore = null;
     }
     catch (error) {
         result.innerHTML = `${error}`;
     }
 });
-button.addEventListener("click", getDadJoke);
+//Scores buttons
+scoreButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+        const selectedButton = event.target;
+        currentScore = parseInt(selectedButton.id);
+    });
+});
+//Store in an array
+button.addEventListener("click", () => {
+    if (currentJoke) {
+        reportJokes.push({
+            joke: currentJoke,
+            score: currentScore !== null && currentScore !== void 0 ? currentScore : 0,
+            date: new Date().toISOString(),
+        });
+        console.log("Updated reportJokes:", reportJokes);
+    }
+});
 document.addEventListener("DOMContentLoaded", getDadJoke);
