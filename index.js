@@ -46,5 +46,29 @@ button.addEventListener("click", () => {
         });
         console.log("Updated reportJokes:", reportJokes);
     }
+    getDadJoke();
 });
 document.addEventListener("DOMContentLoaded", getDadJoke);
+// document.addEventListener("DOMContentLoaded", () => {
+//   getDadJoke();
+//   // fetchWeather();
+// getLocation(new Event("DOMContentLoaded"));
+// });
+// //Weather
+// async function fetchWeather() {
+//   // const latitude = 41.3888;
+//   // const longitude = 2.159;
+//   const url =
+//     "https://api.openweathermap.org/data/2.5/weather?lat={41.3888}&lon={2.159}&appid={API key}";
+//   try {
+//     const response = await fetch(url);
+//     console.log(response.json());
+//     if (!response.ok) {
+//       throw new Error(`Error loading weather`);
+//     }
+//     return await response.json();
+//   } catch (error) {
+//     console.log("No weather available:", error);
+//     throw error;
+//   }
+// }
