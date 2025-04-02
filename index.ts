@@ -43,6 +43,7 @@ button.addEventListener("click", () => {
 
     console.log("Updated reportJokes:", reportJokes);
   }
+  getDadJoke();
 });
 
 document.addEventListener("DOMContentLoaded", getDadJoke);
