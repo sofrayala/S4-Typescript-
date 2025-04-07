@@ -20,7 +20,30 @@ const getDadJoke = async () => {
     result.innerHTML = currentJoke;
     currentScore = null;
   } catch (error) {
-    result.innerHTML = `${error}`;
+    result.innerHTML = `Dad joke error:${error}`;
+  }
+};
+
+//Chuck Norris Joke
+const getChuckJoke = async () => {
+  try {
+    const response = await fetch("https://api.chucknorris.io/jokes/random");
+
+    const data = await response.json();
+    currentJoke = data.value;
+    result.innerHTML = currentJoke;
+    currentScore = null;
+  } catch (error) {
+    result.innerHTML = `Chuck joke error:${error}`;
+  }
+};
+
+const changeJokes = () => {
+  const randomNum = Math.floor(Math.random() * 10);
+  if (randomNum % 2 === 0) {
+    getDadJoke();
+  } else {
+    getChuckJoke();
   }
 };
 
@@ -43,11 +66,10 @@ button.addEventListener("click", () => {
 
     console.log("Updated reportJokes:", reportJokes);
   }
-  getDadJoke();
+  changeJokes();
 });
 
-//Level 2
-
+//Weather
 interface WeatherResponse {
   main: {
     temp: number;
@@ -57,9 +79,9 @@ interface WeatherResponse {
   }[];
 }
 
-const API_KEY = "3fc40e59a7a8272313146bb441166295";
-const LAT = 41.3851;
-const LON = 2.1734;
+const API_KEY: string = "3fc40e59a7a8272313146bb441166295";
+const LAT: number = 41.3851;
+const LON: number = 2.1734;
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
 const getCurrentWeather = async () => {
@@ -68,7 +90,7 @@ const getCurrentWeather = async () => {
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      throw new Error(`Error!: ${response.status}`);
     }
 
     const data: WeatherResponse = await response.json();
@@ -91,4 +113,4 @@ const getCurrentWeather = async () => {
 
 getCurrentWeather();
 
-document.addEventListener("DOMContentLoaded", getDadJoke);
+document.addEventListener("DOMContentLoaded", changeJokes);
