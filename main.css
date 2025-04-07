@@ -18,11 +18,12 @@ body {
 }
 
 #main-container {
-  background-image: url(imgs/background-img-ex2.png);
-  background-size: cover;
+  background-image: url(imgs/Blob.png);
+  background-size: contain;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin: auto;
   min-height: 88vh;
   position: relative;
