@@ -48,4 +48,33 @@ button.addEventListener("click", () => {
     }
     getDadJoke();
 });
+//Level 2
+const API_KEY = "3fc40e59a7a8272313146bb441166295";
+const LAT = 41.3851;
+const LON = 2.1734;
+const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
+const getCurrentWeather = () => __awaiter(void 0, void 0, void 0, function* () {
+    const url = `${BASE_URL}?lat=${LAT}&lon=${LON}&appid=${API_KEY}&units=metric`;
+    try {
+        const response = yield fetch(url);
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = yield response.json();
+        const temperature = data.main.temp.toFixed(1);
+        const iconCode = data.weather[0].icon;
+        const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+        // HTML
+        const temperatureHTML = document.getElementById("temperature");
+        const iconHTML = document.getElementById("weather-icon");
+        if (temperatureHTML)
+            temperatureHTML.textContent = `${temperature}°C`;
+        if (iconHTML)
+            iconHTML.src = iconUrl;
+    }
+    catch (error) {
+        console.error("Failed to fetch weather:", error);
+    }
+});
+getCurrentWeather();
 document.addEventListener("DOMContentLoaded", getDadJoke);
