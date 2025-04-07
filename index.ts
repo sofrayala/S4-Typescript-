@@ -1,4 +1,3 @@
-// Get Dad Joke API
 let result = document.querySelector("#result") as HTMLElement;
 let button = document.querySelector("#btn") as HTMLElement;
 let scoreButtons = document.querySelectorAll(
@@ -24,7 +23,6 @@ const getDadJoke = async () => {
   }
 };
 
-//Chuck Norris Joke
 const getChuckJoke = async () => {
   try {
     const response = await fetch("https://api.chucknorris.io/jokes/random");
@@ -47,7 +45,6 @@ const changeJokes = () => {
   }
 };
 
-//Scores buttons
 scoreButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     const selectedButton = event.target as HTMLButtonElement;
@@ -55,7 +52,6 @@ scoreButtons.forEach((button) => {
   });
 });
 
-//Store in an array
 button.addEventListener("click", () => {
   if (currentJoke) {
     reportJokes.push({
