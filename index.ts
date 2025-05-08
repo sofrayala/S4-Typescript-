@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 let result = document.querySelector("#result") as HTMLElement;
 let button = document.querySelector("#btn") as HTMLElement;
 let scoreButtons = document.querySelectorAll(
@@ -74,8 +76,7 @@ interface WeatherResponse {
     icon: string;
   }[];
 }
-
-const API_KEY: string = "3fc40e59a7a8272313146bb441166295";
+const API_KEY: string = process.env.API_KEY || "";
 const LAT: number = 41.3851;
 const LON: number = 2.1734;
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
